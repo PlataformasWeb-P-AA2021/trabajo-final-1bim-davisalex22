@@ -23,6 +23,7 @@ class Establecimiento(Base):
     acceso = Column(String, nullable=false)
     num_estudiantes = Column(Integer, nullable=false)
     num_docentes = Column(Integer, nullable=false)
+    # Se agrega la columna parroquia_id como ForeignKey
     parroquia_id = Column(String, ForeignKey('parroquia.cod_parrq'))
     parroquia = relationship("Parroquia", back_populates="establecimientos")
 
@@ -39,29 +40,31 @@ class Establecimiento(Base):
             self.num_estudiantes,
             self.num_docentes)
 
-# Genera clase Parroquia
+# Genera clase Parroquia (Una parroquia tiene muchos establecimientos)
 class Parroquia(Base):
     __tablename__ = 'parroquia'
     id = Column(Integer, primary_key=True)
     cod_parrq = Column(String, nullable=False)
     nombre_parrq = Column(String, nullable=False)
     establecimientos = relationship("Establecimiento", back_populates="parroquia")
+    # Se agrega la columna canton_id como ForeignKey
     canton_id = Column(String, ForeignKey('canton.cod_cant'))
     canton = relationship("Canton", back_populates="parroquias")
 
     def __repr__(self):
-        return "[ Parroquia %d: Codigo Parroquia: %s - Nombre Parroqui: %s ] \n ..........\n" % (
+        return "[ Parroquia %d: Codigo Parroquia: %s - Nombre Parroquia: %s ] \n ..........\n" % (
             self.id,
             self.cod_parrq,
             self.nombre_parrq
         )
-# Genera clase Canton
+# Genera clase Canton (Un cantón tiene muchas parroquias)
 class Canton(Base):
     __tablename__ = 'canton'
     id = Column(Integer, primary_key=True)
     cod_cant = Column(String, nullable=False)
     nombre_cant = Column(String, nullable=False)
     parroquias = relationship("Parroquia", back_populates="canton")
+    # Se agrega la columna provincia_id como ForeignKey
     provincia_id = Column(String, ForeignKey('provincia.cod_prov'))
     provincia = relationship("Provincia", back_populates="cantones")
 
@@ -72,12 +75,13 @@ class Canton(Base):
             self.nombre_cant
         )
 
-# Genera clase Provincia
+# Genera clase Provincia (Una provincia tiene muchos cantones)
 class Provincia(Base):
     __tablename__ = 'provincia'
     id = Column(Integer, primary_key=True)
     cod_prov = Column(String, nullable=False)
     nombre_prov = Column(String, nullable=False)
+    # Mapea la relación entre las clases
     cantones = relationship("Canton", back_populates="provincia")
 
     def __repr__(self):

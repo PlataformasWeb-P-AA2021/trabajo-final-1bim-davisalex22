@@ -20,7 +20,7 @@ print(consulta1)
 
 # Consulta 2 Todos los establecimientos ordenados por sostenimiento y tengan código de distrito 11D02.
 
-consulta2 = session.query(Establecimiento).filter(
+consulta2 = session.query(Establecimiento).join(Parroquia).filter(
     Establecimiento.cod_distrito == "11D02").order_by(Establecimiento.sostenimiento).all()
 print(" -- Todos los establecimientos ordenados por sostenimiento y tengan código de distrito 11D02 --\n")
 print(consulta2)
