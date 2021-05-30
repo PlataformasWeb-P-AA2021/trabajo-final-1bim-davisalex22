@@ -45,8 +45,7 @@ class Parroquia(Base):
     id = Column(Integer, primary_key=True)
     cod_parrq = Column(String, nullable=False)
     nombre_parrq = Column(String, nullable=False)
-    establecimientos = relationship(
-        "Establecimiento", back_populates="parroquia")
+    establecimientos = relationship("Establecimiento", back_populates="parroquia")
     canton_id = Column(String, ForeignKey('canton.cod_cant'))
     canton = relationship("Canton", back_populates="parroquias")
 
