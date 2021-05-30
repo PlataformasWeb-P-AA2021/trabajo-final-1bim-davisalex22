@@ -39,3 +39,10 @@ Dada la información de la carpeta ***data***. Realizar las siguientes tareas:
 	* consulta5.py
 		* Los establecimientos ordenados por nombre de parroquia que tengan más de 20 profesores y la cadena "Permanente" en tipo de educación.
 		* Todos los establecimientos ordenados por sostenimiento y tengan código de distrito 11D02.
+# Trabajo Final Primer Bimestre orden de ejecución de archivos:
+1.- genera_tablas.py
+2.- ingresa_provincias.py
+3.- ingresa_cantones.py
+4.- ingresa_parroquias.py
+5.- ingresa_establecimientos.py
+6.- consulta1.py, consulta2.py, ... 
